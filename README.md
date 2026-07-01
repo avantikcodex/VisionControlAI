@@ -1,2 +1,6 @@
 # VisionControlAI
-AI-powered touchless computer control platform using voice, gestures, and secure authentication.
+
+Touchless computer control using:
+- Hand Gestures
+- Voice Commands
+- Mobile Authentication
