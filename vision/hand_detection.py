@@ -34,6 +34,7 @@ while True:
     results = hands.process(rgb_frame)
 
     finger_count = 0
+    gesture_name = "UNKNOWN"
 
     if results.multi_hand_landmarks:
 
@@ -76,11 +77,40 @@ while True:
 
                 finger_count = fingers.count(1)
 
+                # Gesture Recognition
+                if finger_count == 0:
+                    gesture_name = "FIST"
+
+                elif finger_count == 1:
+                    gesture_name = "ONE"
+
+                elif finger_count == 2:
+                    gesture_name = "VICTORY"
+
+                elif finger_count == 3:
+                    gesture_name = "THREE"
+
+                elif finger_count == 4:
+                    gesture_name = "FOUR"
+
+                elif finger_count == 5:
+                    gesture_name = "OPEN PALM"
+
     current_time = time.time()
 
     fps = 1 / (current_time - prev_time) if prev_time else 0
 
     prev_time = current_time
+
+    cv2.putText(
+        frame,
+        f"FPS: {int(fps)}",
+        (10, 40),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        1,
+        (0, 255, 0),
+        2
+    )
 
     cv2.putText(
         frame,
@@ -94,15 +124,15 @@ while True:
 
     cv2.putText(
         frame,
-        f"FPS: {int(fps)}",
-        (10, 40),
+        f"Gesture: {gesture_name}",
+        (10, 120),
         cv2.FONT_HERSHEY_SIMPLEX,
         1,
-        (0, 255, 0),
+        (0, 255, 255),
         2
     )
 
-    cv2.imshow("VisionControlAI Finger Counter", frame)
+    cv2.imshow("VisionControlAI Gesture Recognition", frame)
 
     if cv2.waitKey(1) & 0xFF == 27:
         break
