@@ -5,10 +5,6 @@ from gestures.mouse_controller import move_mouse
 
 vision_active = False
 
-stable_gesture = "UNKNOWN"
-last_gesture = "UNKNOWN"
-gesture_start_time = time.time()
-
 cap = cv2.VideoCapture(0)
 
 mp_hands = mp.solutions.hands
@@ -16,8 +12,8 @@ mp_hands = mp.solutions.hands
 hands = mp_hands.Hands(
     static_image_mode=False,
     max_num_hands=1,
-    min_detection_confidence=0.6,
-    min_tracking_confidence=0.6
+    min_detection_confidence=0.5,
+    min_tracking_confidence=0.5
 )
 
 mp_draw = mp.solutions.drawing_utils
@@ -57,7 +53,7 @@ while True:
 
             h, w, c = frame.shape
 
-            for landmark_id, lm in enumerate(hand_landmarks.landmark):
+            for id, lm in enumerate(hand_landmarks.landmark):
 
                 cx = int(lm.x * w)
                 cy = int(lm.y * h)
@@ -68,20 +64,23 @@ while True:
 
                 fingers = []
 
-                if lm_list[4][0] > lm_list[3][0]:
+                # Thumb
+                if lm_list[tip_ids[0]][0] > lm_list[tip_ids[0] - 1][0]:
                     fingers.append(1)
                 else:
                     fingers.append(0)
 
-                for finger_id in range(1, 5):
+                # Other Fingers
+                for id in range(1, 5):
 
-                    if lm_list[tip_ids[finger_id]][1] < lm_list[tip_ids[finger_id] - 2][1]:
+                    if lm_list[tip_ids[id]][1] < lm_list[tip_ids[id] - 2][1]:
                         fingers.append(1)
                     else:
                         fingers.append(0)
 
                 finger_count = fingers.count(1)
 
+                # Gesture Recognition
                 if finger_count == 0:
                     gesture_name = "FIST"
 
@@ -100,22 +99,14 @@ while True:
                 elif finger_count == 5:
                     gesture_name = "OPEN PALM"
 
-                current_time = time.time()
+                # Activation System
+                if gesture_name == "OPEN PALM":
+                    vision_active = True
 
-                if gesture_name != last_gesture:
-                    last_gesture = gesture_name
-                    gesture_start_time = current_time
+                elif gesture_name == "FIST":
+                    vision_active = False
 
-                if current_time - gesture_start_time > 0.5:
-
-                    stable_gesture = gesture_name
-
-                    if stable_gesture == "OPEN PALM":
-                        vision_active = True
-
-                    elif stable_gesture == "FIST":
-                        vision_active = False
-
+                # Mouse Control
                 if vision_active and len(lm_list) > 8:
 
                     index_x = lm_list[8][0]
@@ -158,7 +149,7 @@ while True:
 
     cv2.putText(
         frame,
-        f"Gesture: {stable_gesture}",
+        f"Gesture: {gesture_name}",
         (10, 120),
         cv2.FONT_HERSHEY_SIMPLEX,
         1,
