@@ -6,7 +6,6 @@ pyautogui.FAILSAFE = True
 screen_width, screen_height = pyautogui.size()
 
 last_click_time = 0
-last_right_click_time = 0
 
 def move_mouse(x, y, frame_width, frame_height):
 
@@ -26,15 +25,3 @@ def left_click():
         pyautogui.click()
 
         last_click_time = current_time
-
-def right_click():
-
-    global last_right_click_time
-
-    current_time = time.time()
-
-    if current_time - last_right_click_time > 1:
-
-        pyautogui.rightClick()
-
-        last_right_click_time = current_time

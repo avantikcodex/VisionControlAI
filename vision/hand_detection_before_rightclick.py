@@ -1,7 +1,8 @@
 import cv2
 import mediapipe as mp
 import time
-from gestures.mouse_controller import move_mouse, left_click, right_click
+from gestures.mouse_controller import move_mouse, left_click
+
 vision_active = False
 
 stable_gesture = "UNKNOWN"
@@ -125,9 +126,6 @@ while True:
                 if vision_active and stable_gesture == "VICTORY":
                     print("LEFT CLICK DETECTED")
                     left_click()
-                if vision_active and stable_gesture == "THREE": 
-                    print("RIGHT CLICK DETECTED")
-                    right_click()
 
     current_time = time.time()
 
