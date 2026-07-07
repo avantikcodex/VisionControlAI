@@ -124,7 +124,6 @@ while True:
                     )
 
                 if vision_active and stable_gesture == "VICTORY":
-                    print("LEFT CLICK DETECTED")
                     left_click()
 
     current_time = time.time()
