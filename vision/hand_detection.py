@@ -14,9 +14,9 @@ mp_hands = mp.solutions.hands
 
 hands = mp_hands.Hands(
     static_image_mode=False,
-    max_num_hands=1,
-    min_detection_confidence=0.6,
-    min_tracking_confidence=0.6
+    max_num_hands=2,
+    min_detection_confidence=0.45,
+    min_tracking_confidence=0.45
 )
 
 mp_draw = mp.solutions.drawing_utils
@@ -100,7 +100,7 @@ while True:
                     last_gesture = gesture_name
                     gesture_start_time = current_time
 
-                if current_time - gesture_start_time > 0.5:
+                if current_time - gesture_start_time > 0.8:
 
                     stable_gesture = gesture_name
 
