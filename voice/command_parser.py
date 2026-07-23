@@ -1,27 +1,10 @@
-import os
+from commands.command_engine import execute_command
+
 
 def process_command(command):
 
-    print("Received:", command)
+    success = execute_command(command)
 
-    if "open chrome" in command:
+    if not success:
 
-        print("Chrome command detected")
-
-        os.system("start https://www.google.com")
-
-    elif "open calculator" in command:
-
-        print("Opening Calculator")
-
-        os.system("calc")
-
-    elif "open notepad" in command:
-
-        print("Opening Notepad")
-
-        os.system("notepad")
-
-    else:
-
-        print("Command not found")
+        print("Sorry, I don't know that command yet.")
