@@ -1,29 +1,27 @@
-from commands.command_database import COMMANDS
+from commands.intent_engine import detect_intent
 from commands.app_commands import open_application
 
 
 def execute_command(command):
 
-    command = command.lower().strip()
+    intent = detect_intent(command)
 
-    for action, phrases in COMMANDS.items():
+    if intent is None:
+        return False
 
-        for phrase in phrases:
+    if intent == "open_chrome":
+        open_application("chrome")
 
-            if phrase in command:
+    elif intent == "open_calculator":
+        open_application("calculator")
 
-                if action == "open_chrome":
-                    open_application("chrome")
+    elif intent == "open_notepad":
+        open_application("notepad")
 
-                elif action == "open_calculator":
-                    open_application("calculator")
+    elif intent == "open_settings":
+        open_application("settings")
 
-                elif action == "open_notepad":
-                    open_application("notepad")
+    else:
+        return False
 
-                elif action == "open_settings":
-                    open_application("settings")
-
-                return True
-
-    return False
+    return True
