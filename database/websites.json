@@ -1,0 +1,42 @@
+[
+    {
+        "name": "youtube",
+        "url": "https://www.youtube.com"
+    },
+    {
+        "name": "google",
+        "url": "https://www.google.com"
+    },
+    {
+        "name": "github",
+        "url": "https://github.com"
+    },
+    {
+        "name": "chatgpt",
+        "url": "https://chat.openai.com"
+    },
+    {
+        "name": "gmail",
+        "url": "https://mail.google.com"
+    },
+    {
+        "name": "amazon",
+        "url": "https://www.amazon.in"
+    },
+    {
+        "name": "netflix",
+        "url": "https://www.netflix.com"
+    },
+    {
+        "name": "spotify",
+        "url": "https://open.spotify.com"
+    },
+    {
+        "name": "linkedin",
+        "url": "https://www.linkedin.com"
+    },
+    {
+        "name": "stackoverflow",
+        "url": "https://stackoverflow.com"
+    }
+]

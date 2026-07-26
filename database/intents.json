@@ -1,0 +1,27 @@
+[
+    {
+        "intent": "coding",
+        "skill": "APPLICATION",
+        "target": "visual studio code"
+    },
+    {
+        "intent": "browse internet",
+        "skill": "BROWSER",
+        "target": "google"
+    },
+    {
+        "intent": "watch videos",
+        "skill": "BROWSER",
+        "target": "youtube"
+    },
+    {
+        "intent": "watch movie",
+        "skill": "BROWSER",
+        "target": "netflix"
+    },
+    {
+        "intent": "listen music",
+        "skill": "BROWSER",
+        "target": "spotify"
+    }
+]
