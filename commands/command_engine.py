@@ -1,5 +1,5 @@
 from commands.intent_engine import detect_intent
-from commands.app_commands import open_application
+from launcher.app_launcher import launch_app
 
 
 def execute_command(command):
@@ -9,19 +9,28 @@ def execute_command(command):
     if intent is None:
         return False
 
-    if intent == "open_chrome":
-        open_application("chrome")
+    app_map = {
 
-    elif intent == "open_calculator":
-        open_application("calculator")
+        "open_chrome": "chrome",
 
-    elif intent == "open_notepad":
-        open_application("notepad")
+        "open_notepad": "notepad",
 
-    elif intent == "open_settings":
-        open_application("settings")
+        "open_calculator": "calculator",
 
-    else:
-        return False
+        "open_settings": "settings",
 
-    return True
+        "open_paint": "paint",
+
+        "open_cmd": "cmd",
+
+        "open_powershell": "powershell"
+
+    }
+
+    if intent in app_map:
+
+        launch_app(app_map[intent])
+
+        return True
+
+    return False

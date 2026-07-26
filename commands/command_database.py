@@ -1,32 +1,62 @@
 COMMANDS = {
 
     "open_chrome": [
+
         "open chrome",
         "launch chrome",
         "start chrome",
         "open browser",
-        "launch browser",
-        "start browser"
-    ],
+        "launch browser"
 
-    "open_calculator": [
-        "open calculator",
-        "start calculator",
-        "launch calculator",
-        "calculator"
     ],
 
     "open_notepad": [
+
         "open notepad",
-        "start notepad",
-        "launch notepad"
+        "launch notepad",
+        "open note",
+        "text editor"
+
+    ],
+
+    "open_calculator": [
+
+        "calculator",
+        "open calculator",
+        "launch calculator",
+        "calc"
+
     ],
 
     "open_settings": [
+
         "open settings",
-        "settings",
         "windows settings",
-        "open windows settings"
+        "settings"
+
+    ],
+
+    "open_paint": [
+
+        "paint",
+        "open paint",
+        "launch paint"
+
+    ],
+
+    "open_cmd": [
+
+        "cmd",
+        "command prompt",
+        "terminal"
+
+    ],
+
+    "open_powershell": [
+
+        "powershell",
+        "open powershell"
+
     ]
 
 }

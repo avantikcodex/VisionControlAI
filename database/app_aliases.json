@@ -1,0 +1,22 @@
+{
+    "calc": "Calculator",
+    "calculator": "Calculator",
+
+    "browser": "Google Chrome",
+    "chrome": "Google Chrome",
+    "google": "Google Chrome",
+
+    "code": "Visual Studio Code",
+    "vscode": "Visual Studio Code",
+    "vs code": "Visual Studio Code",
+    "coding": "Visual Studio Code",
+
+    "terminal": "Windows PowerShell",
+    "powershell": "Windows PowerShell",
+    "power shell": "Windows PowerShell",
+
+    "cmd": "Command Prompt",
+    "command prompt": "Command Prompt",
+
+    "paint": "Paint"
+}
