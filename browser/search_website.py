@@ -3,6 +3,6 @@ from knowledge.knowledge_manager import KnowledgeManager
 km = KnowledgeManager()
 
 
-def route(command):
+def search_website(name):
 
-    return km.intent(command)
+    return km.website(name)

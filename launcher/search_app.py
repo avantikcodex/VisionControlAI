@@ -1,22 +1,8 @@
-from utils.json_manager import load_json
-from brain.fuzzy_match import fuzzy_search
+from knowledge.knowledge_manager import KnowledgeManager
 
-DATABASE_FILE = "database/apps.json"
+km = KnowledgeManager()
 
 
-def search_application(user_input):
+def search_application(name):
 
-    apps = load_json(DATABASE_FILE)
-
-    names = [app["name"] for app in apps]
-
-    best_match = fuzzy_search(user_input, names)
-
-    if best_match is None:
-        return None
-
-    for app in apps:
-        if app["name"] == best_match:
-            return app
-
-    return None
+    return km.app(name)

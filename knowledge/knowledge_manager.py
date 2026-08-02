@@ -16,3 +16,15 @@ class KnowledgeManager:
     def intent(self, command):
 
         return find_intent(command)
+
+    def exists_app(self, name):
+
+        return self.app(name) is not None
+
+    def exists_website(self, name):
+
+        return self.website(name) is not None
+
+    def exists_intent(self, command):
+
+        return self.intent(command) is not None
