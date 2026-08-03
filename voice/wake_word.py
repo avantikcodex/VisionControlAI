@@ -1,27 +1,22 @@
-from voice.speech_recognition import listen_command
+WAKE_WORDS = [
+
+    "vexa",
+
+    "hey vexa",
+
+    "hello vexa"
+
+]
 
 
-def wait_for_vexa():
+def detected(sentence):
 
-    print("Waiting for Vexa...")
+    sentence = sentence.lower()
 
-    while True:
+    for word in WAKE_WORDS:
 
-        command = listen_command()
-
-        if command == "":
-            continue
-
-        print("Heard:", command)
-
-        if (
-            "vexa" in command
-            or "hey vexa" in command
-            or "hey alexa" in command
-            or "alexa" in command
-            or "axea" in command
-        ):
-
-            print("Vexa Activated")
+        if word in sentence:
 
             return True
+
+    return False

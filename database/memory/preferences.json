@@ -1,4 +1,6 @@
 {
     "browser": "Chrome",
-    "ide": "VS Code"
+    "ide": "VS Code",
+    "favorite_language": "Python",
+    "favorite_ide": "VS Code"
 }
