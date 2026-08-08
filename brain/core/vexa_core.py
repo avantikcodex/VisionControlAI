@@ -17,6 +17,26 @@ class VexaCore:
 
         request = self.pipeline.process(request)
 
-        self.dispatcher.dispatch(request.decision)
+        if request.decision:
+
+            self.dispatcher.dispatch(
+                request.decision
+            )
+
+        return request
+
+    def process(self, request):
+
+        if request is None:
+
+            return None
+
+        request = self.pipeline.process(request)
+
+        if request.decision:
+
+            self.dispatcher.dispatch(
+                request.decision
+            )
 
         return request

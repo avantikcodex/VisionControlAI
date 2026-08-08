@@ -346,5 +346,17 @@
     {
         "name": "Windows PowerShell",
         "shortcut": "C:\\Users\\dubey\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Windows PowerShell\\Windows PowerShell.lnk"
+    },
+    {
+        "name": "Notepad",
+        "shortcut": "C:\\Windows\\System32\\notepad.exe"
+    },
+    {
+        "name": "Calculator",
+        "shortcut": "C:\\Windows\\System32\\calc.exe"
+    },
+    {
+        "name": "Paint",
+        "shortcut": "C:\\Windows\\System32\\mspaint.exe"
     }
 ]

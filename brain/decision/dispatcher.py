@@ -1,21 +1,99 @@
-from launcher.app_launcher import launch_application
-from browser.websites import open_website
+from automation.automation_engine import AutomationEngine
 
 
 class Dispatcher:
 
+    def __init__(self):
+
+        self.automation = AutomationEngine()
+
     def dispatch(self, decision):
 
-        if decision.action == "OPEN_APPLICATION":
+        if decision is None:
 
-            return launch_application(decision.target)
+            print("[Dispatcher] No decision")
 
-        elif decision.action == "OPEN_WEBSITE":
+            return False
 
-            return open_website(decision.target)
+        action = getattr(
+            decision,
+            "action",
+            None
+        )
+
+        target = getattr(
+            decision,
+            "target",
+            None
+        )
+
+        if not action:
+
+            print("[Dispatcher] No action")
+
+            return False
+
+        print(
+            f"[Dispatcher] Action : {action}"
+        )
+
+        # -----------------------------------------------------
+        # SAFETY CHECK
+        # -----------------------------------------------------
+
+        confidence = getattr(
+            decision,
+            "confidence",
+            0
+        )
+
+        need_confirmation = getattr(
+            decision,
+            "need_confirmation",
+            False
+        )
+
+        risk = getattr(
+            decision,
+            "risk",
+            "LOW"
+        )
+
+        print(
+            f"[Dispatcher] Confidence : {confidence}"
+        )
+
+        print(
+            f"[Dispatcher] Risk : {risk}"
+        )
+
+        if need_confirmation:
+
+            print(
+                "[Dispatcher] Confirmation required"
+            )
+
+            return False
+
+        # -----------------------------------------------------
+        # AUTOMATION
+        # -----------------------------------------------------
+
+        result = self.automation.execute(
+            action,
+            target
+        )
+
+        if result:
+
+            print(
+                "[Dispatcher] Automation successful"
+            )
 
         else:
 
-            print("No dispatcher available for:", decision.action)
+            print(
+                "[Dispatcher] Automation failed"
+            )
 
-            return False
+        return result

@@ -1,29 +1,41 @@
-from brain.knowledge.query_processor import QueryProcessor
-from brain.knowledge.topic_classifier import classify_topic
-from brain.knowledge.knowledge_router import route
-from brain.knowledge.search_manager import search
-from brain.knowledge.answer_generator import AnswerGenerator
+def test_answer_generator():
 
-processor = QueryProcessor()
-generator = AnswerGenerator()
+    from brain.knowledge.answer_generator import AnswerGenerator
 
-print("=" * 60)
-print("ANSWER GENERATOR TEST")
-print("=" * 60)
+    generator = AnswerGenerator()
 
-while True:
+    query = {
+        "query_type": "EXPLAIN"
+    }
 
-    sentence = input("\nYou : ")
+    result = {
+        "answer": "Artificial Intelligence enables computers to perform tasks that normally require human intelligence.",
+        "source": "Phase 1 Test"
+    }
 
-    query = processor.process(sentence)
+    answer = generator.generate(
+        query,
+        result
+    )
 
-    topic = classify_topic(sentence)
+    if answer is None:
+        raise AssertionError(
+            "AnswerGenerator returned None"
+        )
 
-    destination = route(query, topic)
+    if not isinstance(answer, str):
+        raise AssertionError(
+            "AnswerGenerator did not return text"
+        )
 
-    result = search(destination, query)
+    if "Artificial Intelligence" not in answer:
+        raise AssertionError(
+            "Generated answer does not contain expected content"
+        )
 
-    answer = generator.generate(query, result)
+    if "Source" not in answer:
+        raise AssertionError(
+            "Generated answer does not contain source"
+        )
 
-    print("\nVEXA\n")
-    print(answer)
+    return True
